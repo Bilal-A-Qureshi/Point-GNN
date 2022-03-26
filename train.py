@@ -617,10 +617,10 @@ with tf.Session(graph=graph,
 
         # add summaries ====================================================
         for key in metrics_update_ops:
-            write_summary_scale(key, results[key], results['step'],
+            write_summary_scale(key, results[key], epoch_idx,
                 train_config['train_dir'])
         write_summary_scale('learning rate', results['learning_rate'],
-            results['step'], train_config['train_dir'])
+            epoch_idx, train_config['train_dir'])
         # save checkpoint ==================================================
         if (epoch_idx + 1) % train_config['save_every_epoch'] == 0:
             checkpoint_path = os.path.join(train_config['train_dir'],
